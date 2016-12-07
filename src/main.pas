@@ -1,23 +1,31 @@
 program andreizawuzawebsite;
 
-{$mode objfpc} 
-
-uses SysUtils, djServer, djWebAppContext, firstresource;
+uses SysUtils, djServer, djWebAppContext, firstresource, indexdefaulthandler, djInterfaces,
+     djHandlerList;
 
 procedure Main;
 var Server: TdjServer;
     Context: TdjWebAppContext;
+    IndexPageHandler: IHandler;
+    HandlerContaner: TdjHandlerList;
 begin
    Server:=TdjServer.Create(5000);
    try
-      Context := TdjWebAppContext.Create('index');
-      Context.Add(TDefualtResource, '*');
-      Server.Add(Context);
+      //Add default handler
+      IndexPageHandler := TIndexDefaultHandler.Create;
+      HandlerContaner:=TdjHandlerList.Create;
+      HandlerContaner.AddHandler(IndexPageHandler);
+      Server.AddHandler(HandlerContaner);
+
+      // Context := TdjWebAppContext.Create('index');
+      // Context.Add(TDefualtResource, '/*');
+      // Server.Add(Context);
+
       Server.Start;
       WriteLn('Server is running');
       while true do;
    finally
-     FreeAndNil(Server);  
+     FreeAndNil(Server);
    end;
 end;
 

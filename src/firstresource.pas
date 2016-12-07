@@ -1,7 +1,5 @@
 unit firstresource;
 
-{$mode objfpc}
-
 interface
 
 uses djWebComponent, IdCustomHTTPServer;
