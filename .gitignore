@@ -95,5 +95,3 @@ lib/
 
 # Application bundle for Mac OS
 *.app/
-
-src/consts.pas
