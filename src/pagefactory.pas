@@ -16,7 +16,7 @@ var f: TStringList;
 begin
   f:=TStringList.Create;
   try
-    f.LoadFromFile(PATH_TO_SRC + '/html/index.html');
+    f.LoadFromFile(PATH_TO_SRC + '\html\index.html');
   except
   on e: Exception do
     Writeln(e.ClassName, ' ', e.Message);

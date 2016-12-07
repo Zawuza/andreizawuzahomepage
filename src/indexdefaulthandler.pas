@@ -2,7 +2,7 @@ unit indexdefaulthandler;
 
 interface
 
-uses djAbstractHandler, pagefactory, djServerContext, djTypes, djHTTPConstants;
+uses djAbstractHandler, pagefactory, djServerContext, djTypes, djHTTPConstants, staticfactory;
 
 type
   TIndexDefaultHandler = class(TdjAbstractHandler)
@@ -16,14 +16,23 @@ procedure TIndexDefaultHandler.Handle(Target: string; Context: TdjServerContext;
       Request: TdjRequest; Response: TdjResponse); 
 begin
   Writeln('Request to:',Request.Document);
-  if Request.Document = '/' then
-    begin
-    Writeln('Homepage');
-    Response.ContentText:=TPageFactory.IndexPage;
-    Response.ContentType:='text/html';
-    Response.ResponseNo:=HTTP_OK;
-    Writeln('Homepage end');
-    end;
+  try
+    if Request.Document = '/' then
+      begin
+      Response.ContentText:=TPageFactory.IndexPage;
+      Response.ContentType:='text/html';
+      Response.ResponseNo:=HTTP_OK;
+      end;
+    if Request.Document = '/face.jpg' then
+      begin
+      Response.ContentType:='image/jpg';
+      Response.ResponseNo:=HTTP_OK;
+      Response.ContentStream:=TStaticFactory.GetStaticContentStream('img\face.jpg')
+      end;
+  except
+    Response.ResponseNo:=500;
+    Writeln('FAIL AT REQUEST TO:', Request.Document);
+  end;
 end;
 
 end.
