@@ -10,13 +10,17 @@ var Server: TdjServer;
 begin
    Server:=TdjServer.Create(5000);
    try
-      Context := TdjWebAppContext.Create('/first');
-      Context.Add(TDefualtResource, '/');
+      Context := TdjWebAppContext.Create('index');
+      Context.Add(TDefualtResource, '*');
       Server.Add(Context);
       Server.Start;
-      WriteLn('Server is running, please open http://localhost/first/');
+      WriteLn('Server is running');
       while true do;
    finally
      FreeAndNil(Server);  
    end;
 end;
+
+begin
+  Main;
+end.

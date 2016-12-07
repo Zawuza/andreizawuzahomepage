@@ -33,18 +33,15 @@ interface
 {$i IdCompilerDefines.inc}
 
 uses
-  IdCustomTCPServer,IdContext;
+  IdCustomTCPServer;
 
 type
   (**
    * A subclass of the Indy context class is used for
    * future extensions.
    *)
-  TdjServerContext = class(TIdContext)
-  protected
-    FServer: TIdCustomTCPServer;
+  TdjServerContext = class(TIdServerContext)
   public
-    property Server: TIdCustomTCPServer read FServer;
   end;
 
   TdjServerContextClass = class of TdjServerContext;
