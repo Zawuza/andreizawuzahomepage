@@ -2,7 +2,7 @@ unit indexdefaulthandler;
 
 interface
 
-uses SysUtils, djAbstractHandler, pagefactory, djServerContext, djTypes,
+uses SysUtils, djAbstractHandler, homepage, djServerContext, djTypes,
      djHTTPConstants, staticfactory;
 
 type
@@ -18,9 +18,10 @@ procedure TIndexDefaultHandler.Handle(Target: string; Context: TdjServerContext;
 begin
   Writeln('Request to:',Request.Document);
   try
+    //homepage
     if Request.Document = '/' then
       begin
-        Response.ContentText:=TPageFactory.IndexPage;
+        Response.ContentText:=THomepage.Get;
         Response.ContentType:='text/html';
         Response.ResponseNo:=HTTP_OK;
       end;

@@ -1,3 +1,6 @@
+{
+  Unit with factory for static content
+}
 unit staticfactory;
 
 interface    

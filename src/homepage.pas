@@ -1,19 +1,22 @@
-unit pagefactory;
+{
+  Unit with generator of index page (homepage)
+}
+unit homepage;
 
 interface
 
 uses SysUtils, Classes, consts, SynMustache, SynCommons;
 
 type
-  TPageFactory = class
-    class function IndexPage: string;
+  THomepage = class
+    class function Get: string;
   end;
 
 implementation
 
-{TPageFactory}
+{THomepage}
 
-class function TPageFactory.IndexPage: string;
+class function THomepage.Get: string;
 var buf: TStringList;
     mustache: TSynMustache;
     doc: Variant;
@@ -27,8 +30,6 @@ begin
   buf.LoadFromFile(PATH_TO_SRC + '\html\navbar.html');
   doc.navbar:=buf.Text;
   Result:=mustache.Render(doc);
-  buf.Text:=Result;
-  buf.SaveToFile('C:\Prog\lol.html');
   FreeAndNil(buf);
 end;
 
