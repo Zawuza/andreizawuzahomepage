@@ -2,7 +2,7 @@ unit pagefactory;
 
 interface
 
-uses SysUtils, Classes, consts;
+uses SysUtils, Classes, consts, SynMustache, SynCommons;
 
 type
   TPageFactory = class
@@ -11,18 +11,25 @@ type
 
 implementation
 
+{TPageFactory}
+
 class function TPageFactory.IndexPage: string;
-var f: TStringList;
+var buf: TStringList;
+    mustache: TSynMustache;
+    doc: Variant;
 begin
-  f:=TStringList.Create;
-  try
-    f.LoadFromFile(PATH_TO_SRC + '\html\index.html');
-  except
-  on e: Exception do
-    Writeln(e.ClassName, ' ', e.Message);
-  end;
-  Result:=f.Text;
-  FreeAndNil(f);
+  buf:=TStringList.Create;
+  buf.LoadFromFile(PATH_TO_SRC + '\html\index.html');
+  mustache:=TSynMustache.Parse(buf.Text);
+  TDocVariant.New(doc);
+  buf.LoadFromFile(PATH_TO_SRC + '\html\head.html');
+  doc.head:=buf.Text;
+  buf.LoadFromFile(PATH_TO_SRC + '\html\navbar.html');
+  doc.navbar:=buf.Text;
+  Result:=mustache.Render(doc);
+  buf.Text:=Result;
+  buf.SaveToFile('C:\Prog\lol.html');
+  FreeAndNil(buf);
 end;
 
 end.
