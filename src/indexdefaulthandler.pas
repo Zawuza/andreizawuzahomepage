@@ -25,11 +25,18 @@ begin
         Response.ContentType:='text/html';
         Response.ResponseNo:=HTTP_OK;
       end;
+    //my photo
     if Request.Document = '/face.jpg' then
       begin
         Response.ContentType:='image/jpg';
         Response.ResponseNo:=HTTP_OK;
         Response.ContentStream:=TStaticFactory.GetStaticContentStream('img\face.jpg');
+      end;
+    //blog -> redirect
+    if Request.Document = '/blog' then
+      begin
+        Response.Location:='/blog/ls';
+        Response.ResponseNo:=301;
       end;
   except
    on e: Exception do 

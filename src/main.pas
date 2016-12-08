@@ -1,11 +1,11 @@
 program andreizawuzawebsite;
 
-uses SysUtils, djServer, djWebAppContext, firstresource, indexdefaulthandler, djInterfaces,
-     djHandlerList;
+uses SysUtils, djServer, djWebAppContext, bloglsresource, indexdefaulthandler, djInterfaces,
+     djHandlerList, blogarchiveresource;
 
 procedure Main;
 var Server: TdjServer;
-    Context: TdjWebAppContext;
+    BlogContext: TdjWebAppContext;
     IndexPageHandler: IHandler;
     HandlerContaner: TdjHandlerList;
 begin
@@ -17,9 +17,11 @@ begin
       HandlerContaner.AddHandler(IndexPageHandler);
       Server.AddHandler(HandlerContaner);
 
-      // Context := TdjWebAppContext.Create('index');
-      // Context.Add(TDefualtResource, '/*');
-      // Server.Add(Context);
+      //Add blog context
+      BlogContext := TdjWebAppContext.Create('blog');
+      BlogContext.Add(TBlogListResource, '/ls');
+      BlogContext.Add(TBlogArchiveResource,'/archive/*');
+      Server.Add(BlogContext);
 
       Server.Start;
       WriteLn('Server is running');
