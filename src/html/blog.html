@@ -5,60 +5,19 @@
       <div class="row">
         <nav class="col-sm-2">
           <ul class="nav nav-pills nav-stacked">
-            <li><a href="#section1">Blog Post 1</a></li>
-            <li><a href="#section2">Blog Post 2</a></li>
-            <li><a href="#section3">Blog Post 3</a></li>
-            <li><a href="#section4">Blog Post 4</a></li>
-            <li><a href="#section5">Blog Post 5</a></li>
-            <li><a href="#section6">Blog Post 6</a></li>
-            <li><a href="#section7">Blog Post 7</a></li>
-            <li><a href="#section8">Blog Post 8</a></li>
-            <li><a href="#section9">Blog Post 9</a></li>
-            <li><a href="#section9">Blog Post 10</a></li>
-            <li><a href="archive.html">Archive</a></li>
+            {{#leftmenu}}
+            <li><a href={{postid}}>{{postname}}</a></li>
+            {{/leftmenu}}
+            <li><a href="/blog/archive/main">Archive</a></li>
           </ul>
         </nav>
         <div class="col-sm-10">
-          <div id="section1">
-            <h1>Blog Post1</h1>
-            <p>Awesome text</p>
+          {{#maincontent}}
+          <div id="{{postid}}">
+            <h1>{{postname}}</h1>
+            <p>{{preview}}</p>
           </div>
-          <div id="section2">
-            <h1>Blog Post2</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section3">
-            <h1>Blog Post3</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section4">
-            <h1>Blog Post4</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section5">
-            <h1>Blog Post5</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section6">
-            <h1>Blog Post6</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section7">
-            <h1>Blog Post7</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section8">
-            <h1>Blog Post8</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section9">
-            <h1>Blog Post9</h1>
-            <p>Awesome text</p>
-          </div>
-          <div id="section9">
-            <h1>Blog Post10</h1>
-            <p>Awesome text</p>
-          </div>
+          {{/maincontent}}
         </div>
       </div>
     </div>
