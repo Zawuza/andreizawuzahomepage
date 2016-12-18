@@ -6,7 +6,7 @@ uses XSuperObject;
 
 type
   TDataAccessObject = class
-    function GetBlogs: ISuperObject;
+    function GetBlogs: ISuperObject; virtual;
   end;
 
 implementation
