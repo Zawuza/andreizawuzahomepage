@@ -2,7 +2,7 @@ unit bloglsresource;
 
 interface
 
-uses djWebComponent, IdCustomHTTPServer, Classes, SysUtils, XSuperObject, dao, SynMustache;
+uses djWebComponent, IdCustomHTTPServer, Classes, SysUtils, fpjson, dao, SynMustache, Consts, djHTTPConstants;
 
 type
     TBlogListResource = class(TdjWebComponent)
@@ -15,7 +15,8 @@ implementation
     var Header: TStringList;
         Navbar: TStringList;
         Template: TStringList;
-        JSON: ISuperObject;
+        JSON: TJSONObject;
+        JSONData: TJSONData;
         var i: integer;
         HTML: string;
         mustache: TSynMustache;
@@ -29,17 +30,18 @@ implementation
       Navbar.LoadFromFile(PATH_TO_SRC + 'html/navbar.html');
       
       {Become posts}
-      JSON := TDataAccessObject.GetBlogs;
+      JSONData := TDataAccessObject.GetBlogs;
+      JSON := (JSONData as TJSONObject);
       {Add navbar and headre to JSON}
-      JSON.S['header']:=Header.Text;
-      JSON.S['navbar']:=Navbar.Text;
+      JSON.Add('header',Header.Text);
+      JSON.Add('navbar',Navbar.Text);
 
       {Prepare the template}
       Template.LoadFromFile(PATH_TO_SRC + '/html/blog.html');
       mustache:=TSynMustache.Parse(Template.Text);
-      HTML:=mustache.RenderJSON(JSON.AsJSON);
+      HTML:=mustache.RenderJSON(JSON.AsString);
 
-      Reponse.ContentType:='/text/html';
+      Response.ContentType:='/text/html';
       Response.ContentText:=HTML;
       Response.ResponseNo:=HTTP_OK;
 

@@ -2,25 +2,43 @@ unit dao;
 
 interface
 
-uses XSuperObject;
+uses fpjson;
 
 type
   TDataAccessObject = class
-    function GetBlogs: ISuperObject; virtual;
+    function GetBlogs: TJSONData;
   end;
 
 implementation
 
-function TDataAccessObject.GetBlogs: ISuperObject;
-var i: integer;
+//Sample JSON object:
+//{"posts":[{
+//            "postid": "awesome",
+//            "postname":"Awesome post",
+//            "preview":"This is awesome post about all things in this world"
+//          }]
+//}
+function TDataAccessObject.GetBlogs: TJSONData;
+var Post: TJSONObject;
+    Root: TJSONObject;
+    Posts: TJSONArray;
 begin
-  Result := SO;
-  for i:=0 to 0 do
-  with Result.A['posts'].O[i] do
-    begin
-      S['postname'] := 'Awesome blog post!';
-      S['preview'] := 'Awesome preview';
-    end;
+  {Create JSON parts}
+  Post:=TJSONObject.Create;
+  Root:=TJSONObject.Create;
+  Posts:=TJSONArray.Create;
+
+  {Create a post}
+  Post.Add('postid','awesome');
+  Post.Add('postname','Awesome post!');
+  Post.Add('preview','This is awesome post about all things in this world!');
+
+  {Add post to array}
+  Posts.Add(Post);
+
+  {Add array to root}
+  Root.Add('posts',Posts);
+  Result:=Root;
 end;
   
 end.
