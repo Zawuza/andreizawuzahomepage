@@ -1,3 +1,4 @@
+{Data acces object for blogs}
 unit dao;
 
 interface

@@ -1,3 +1,4 @@
+{Resourse for page with listing of blog posts}
 unit bloglsresource;
 
 interface

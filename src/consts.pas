@@ -1,3 +1,4 @@
+{Unit with constant files}
 unit consts;
 
 interface

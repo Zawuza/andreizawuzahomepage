@@ -1,3 +1,4 @@
+{Resource for page with blog post}
 unit blogarchiveresource;
 
 interface
