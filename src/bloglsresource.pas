@@ -33,15 +33,16 @@ implementation
       JSONData := TDataAccessObject.GetBlogs;
       JSON := (JSONData as TJSONObject);
       {Add navbar and headre to JSON}
-      JSON.Add('header',Header.Text);
+      JSON.Add('head',Header.Text);
       JSON.Add('navbar',Navbar.Text);
+      JSONData:=(JSON as TJSONData);
 
       {Prepare the template}
       Template.LoadFromFile(PATH_TO_SRC + '/html/blog.html');
       mustache:=TSynMustache.Parse(Template.Text);
-      HTML:=mustache.RenderJSON(JSON.AsString);
+      HTML:=mustache.RenderJSON(JSON.AsJSON);
 
-      Response.ContentType:='/text/html';
+      Response.ContentType:='text/html';
       Response.ContentText:=HTML;
       Response.ResponseNo:=HTTP_OK;
 

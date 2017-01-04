@@ -1,3 +1,5 @@
+{ This is main handler. It process all requests to / and creates responses for it.
+ It also makes redirect when request comes to "/blog" and process requests to static files }
 unit indexdefaulthandler;
 
 interface
@@ -25,18 +27,18 @@ begin
         Response.ContentType:='text/html';
         Response.ResponseNo:=HTTP_OK;
       end;
-    //my photo
-    if Request.Document = '/face.jpg' then
-      begin
-        Response.ContentType:='image/jpg';
-        Response.ResponseNo:=HTTP_OK;
-        Response.ContentStream:=TStaticFactory.GetStaticContentStream('img\face.jpg');
-      end;
     //blog -> redirect
     if Request.Document = '/blog' then
       begin
         Response.Location:='/blog/ls';
         Response.ResponseNo:=301;
+      end;
+    //static content
+    if TStaticFactory.FileExists(Request.Document) then
+      begin
+        Response.ContentType:='image/jpg';
+        Response.ResponseNo:=HTTP_OK;
+        Response.ContentStream:=TStaticFactory.GetStaticContentStream('img\face.jpg');
       end;
   except
    on e: Exception do 

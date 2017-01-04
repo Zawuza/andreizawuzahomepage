@@ -6,16 +6,21 @@
         <nav class="col-sm-2">
           <ul class="nav nav-pills nav-stacked">
             {{#posts}}
-            <li><a href={{postid}}>{{postname}}</a></li>
+            <li><a href=#{{postid}}>{{postname}}</a></li>
             {{/posts}}
             <li><a href="/blog/archive/main">Archive</a></li>
           </ul>
         </nav>
         <div class="col-sm-10">
           {{#posts}}
-          <div id="{{postid}}">
-            <h1>{{postname}}</h1>
-            <p>{{preview}}</p>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div id="{{postid}}">
+                <h1>{{postname}}</h1>
+                <p>{{preview}}</p>
+              </div>
+              <a href={{postid}}>Read>>></a>
+            </div>
           </div>
           {{/posts}}
         </div>

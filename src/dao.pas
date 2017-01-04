@@ -6,7 +6,7 @@ uses fpjson;
 
 type
   TDataAccessObject = class
-    function GetBlogs: TJSONData;
+    class function GetBlogs: TJSONData;
   end;
 
 implementation
@@ -18,7 +18,7 @@ implementation
 //            "preview":"This is awesome post about all things in this world"
 //          }]
 //}
-function TDataAccessObject.GetBlogs: TJSONData;
+class function TDataAccessObject.GetBlogs: TJSONData;
 var Post: TJSONObject;
     Root: TJSONObject;
     Posts: TJSONArray;
