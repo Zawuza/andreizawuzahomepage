@@ -5,7 +5,7 @@ unit staticfactory;
 
 interface    
 
-uses consts, Classes, SysUtils;                                                                      
+uses consts, Classes, SysUtils, fgl;                                                                      
 
 type
 
@@ -16,17 +16,30 @@ end;
 
 implementation
 
+var AllowedFiles: TFPGMap<string,boolean>;
+
 class function TStaticFactory.GetStaticContentStream(AFileName: string): TStream;
 begin
   if not (AFileName[1]='\') then
     AFileName:='\' + AFileName;
-  Result:=TFIleStream.Create(PATH_TO_SRC + AFileName,fmOpenRead);
+  if FileExists(AFileName) then
+     Result:=TFIleStream.Create(PATH_TO_SRC + AFileName,fmOpenRead);
 end;
 
 class function TStaticFactory.FileExists(AFileName: string): boolean;
 begin
-  Result:=false;
-  if AFilename='/face.jpg' then Result:=true;
+  Result:=AllowedFiles.IndexOf(AFileName)<>-1;
 end;
+
+initialization
+
+AllowedFiles:=TFPGMap<string,boolean>.Create; 
+
+{Add allowed files to dictionary}
+AllowedFiles.Add('/face.jpg',true);
+
+finalization
+
+FreeAndNil(AllowedFiles);
 
 end.
