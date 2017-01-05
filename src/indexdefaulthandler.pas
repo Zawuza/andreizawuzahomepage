@@ -26,19 +26,21 @@ begin
         Response.ContentText:=THomepage.Get;
         Response.ContentType:='text/html';
         Response.ResponseNo:=HTTP_OK;
+        exit;
       end;
     //blog -> redirect
     if Request.Document = '/blog' then
       begin
         Response.Location:='/blog/ls';
         Response.ResponseNo:=301;
+        exit;
       end;
     //static content
     if TStaticFactory.FileExists(Request.Document) then
       begin
-        Response.ContentType:='image/jpg';
         Response.ResponseNo:=HTTP_OK;
         Response.ContentStream:=TStaticFactory.GetStaticContentStream(Request.Document);
+        exit;
       end;
   except
    on e: Exception do 

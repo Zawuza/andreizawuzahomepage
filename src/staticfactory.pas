@@ -40,6 +40,7 @@ AllowedFiles:=TFPGMap<string,string>.Create;
 
 {Add allowed files to dictionary}
 AllowedFiles.Add('/face.jpg','img\face.jpg');
+AllowedFiles.Add('/navbar.css','css\navbar.css');
 
 finalization
 
