@@ -16,14 +16,17 @@ end;
 
 implementation
 
-var AllowedFiles: TFPGMap<string,boolean>;
+var AllowedFiles: TFPGMap<string,string>;
 
 class function TStaticFactory.GetStaticContentStream(AFileName: string): TStream;
+var LFileName:string;
 begin
-  if not (AFileName[1]='\') then
+  if not FileExists(AFileName) then
+     exit;
+  LFileName:=AllowedFiles[AFileName];
+  if not (LFileName[1]='\') then
     AFileName:='\' + AFileName;
-  if FileExists(AFileName) then
-     Result:=TFIleStream.Create(PATH_TO_SRC + AFileName,fmOpenRead);
+  Result:=TFIleStream.Create(PATH_TO_SRC + LFileName,fmOpenRead);
 end;
 
 class function TStaticFactory.FileExists(AFileName: string): boolean;
@@ -33,10 +36,10 @@ end;
 
 initialization
 
-AllowedFiles:=TFPGMap<string,boolean>.Create; 
+AllowedFiles:=TFPGMap<string,string>.Create; 
 
 {Add allowed files to dictionary}
-AllowedFiles.Add('/face.jpg',true);
+AllowedFiles.Add('/face.jpg','img\face.jpg');
 
 finalization
 

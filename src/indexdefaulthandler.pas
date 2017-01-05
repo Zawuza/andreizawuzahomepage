@@ -38,7 +38,7 @@ begin
       begin
         Response.ContentType:='image/jpg';
         Response.ResponseNo:=HTTP_OK;
-        Response.ContentStream:=TStaticFactory.GetStaticContentStream('img\face.jpg');
+        Response.ContentStream:=TStaticFactory.GetStaticContentStream(Request.Document);
       end;
   except
    on e: Exception do 
