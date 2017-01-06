@@ -39,7 +39,7 @@ begin
     if TStaticFactory.FileExists(Request.Document) then
       begin
         Response.ResponseNo:=HTTP_OK;
-        Response.ContentStream:=TStaticFactory.GetStaticContentStream(Request.Document);
+        Response.ContentStream:=TStaticFactory.GetStaticContentStream(Request.Document,Response);
         exit;
       end;
   except

@@ -1,6 +1,7 @@
-    .navbar {
-       background-color: #237fcf;
-       border-color: #5373d9;
+ .navbar {
+         border-radius: 0;
+        background-color: #237fcf;
+        border-color: #5373d9;
     }
   	.navbar-default .navbar-nav>li>a {
   	  color: white;
@@ -15,4 +16,14 @@
     .navbar-default .navbar-nav > li > a:hover,
     .navbar-default .navbar-nav > li > a:focus {
       color: #adff2f;
+    }
+
+    .face {
+        max-width: 455px;
+    }
+
+    .navbar-brand {
+        font-size: 21px;
+        margin-right: 10px;
+        font-family: 'Bitter', serif;
     }
