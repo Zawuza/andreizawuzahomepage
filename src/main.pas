@@ -1,11 +1,7 @@
 program andreizawuzawebsite;
 
-{$codepage UTF8}
-
-{Notes: LazUTF8 must be the first unit}
-
-uses LazUTF8,SysUtils, djServer, djWebAppContext, bloglsresource, indexdefaulthandler, djInterfaces,
-     djHandlerList, blogarchiveresource;
+uses SysUtils, djServer, djWebAppContext, bloglsresource, indexdefaulthandler, djInterfaces,
+     djHandlerList, blogarchiveresource, Windows;
 
 procedure Main;
 var Server: TdjServer;
@@ -13,8 +9,8 @@ var Server: TdjServer;
     IndexPageHandler: IHandler;
     HandlerContaner: TdjHandlerList;
 begin
-   Writeln('äää');
-   Writeln('Андрей');
+   Writeln(DefaultSystemCodepage,' ',CP_UTF8);
+   Writeln(Hello);
    Server:=TdjServer.Create(5000);
    try
       //Add default handler

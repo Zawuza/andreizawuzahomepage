@@ -3,7 +3,7 @@ unit blogarchiveresource;
 
 interface
 
-uses LazUTF8, djWebComponent, IdCustomHTTPServer, consts, Classes, SysUtils, SynMustache, SynCommons;
+uses djWebComponent, IdCustomHTTPServer, consts, Classes, SysUtils, SynMustache, SynCommons;
 
 type
     TBlogArchiveResource = class(TdjWebComponent)

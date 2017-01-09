@@ -5,7 +5,7 @@ if (!(Test-Path -Path ".\out")) {
 if (!(Test-Path -Path ".\bin")) {
     New-Item -ItemType directory -Path ".\bin" | Out-Null
 }
-$out = fpc main.pas -Mdelphi -Fu".\dep\daraja-framework" `
+$out = fpc main.pas -FcUTF8 -Mobjfpc -Fu".\dep\daraja-framework" `
    -Fu".\dep\indy\Core" -Fu".\dep\indy\Protocols" -Fu".\dep\indy\System" `
    -Fu".\dep\dmustache" -Fu".\dep\lcl" -FU".\out" -o".\bin\main.exe" | Out-String
 if ($out.Contains('Error')) {
