@@ -18,7 +18,6 @@ implementation
         Template: TStringList;
         JSON: TJSONObject;
         JSONData: TJSONData;
-        var i: integer;
         HTML: string;
         mustache: TSynMustache;
     begin

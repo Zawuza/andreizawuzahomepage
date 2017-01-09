@@ -1,6 +1,11 @@
 program andreizawuzawebsite;
 
-uses SysUtils, djServer, djWebAppContext, bloglsresource, indexdefaulthandler, djInterfaces,
+{$CODEPAGE UTF8}
+
+
+{Notes: LazUTF8 must be the first unit}
+
+uses LazUTF8,SysUtils, djServer, djWebAppContext, bloglsresource, indexdefaulthandler, djInterfaces,
      djHandlerList, blogarchiveresource;
 
 procedure Main;
