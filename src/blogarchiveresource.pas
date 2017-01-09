@@ -36,6 +36,7 @@ begin
    {Return html}
    Response.ContentText:=mustache.Render(doc);
    Response.ContentType:='text/html';
+   Response.ContentEncoding:='utf-8';
    {Free resources}
    FreeAndNil(Navbar);
    FreeAndNil(Header);

@@ -9,8 +9,6 @@ var Server: TdjServer;
     IndexPageHandler: IHandler;
     HandlerContaner: TdjHandlerList;
 begin
-   Writeln(DefaultSystemCodepage,' ',CP_UTF8);
-   Writeln(Hello);
    Server:=TdjServer.Create(5000);
    try
       //Add default handler
