@@ -1,7 +1,6 @@
 program andreizawuzawebsite;
 
-{$CODEPAGE UTF8}
-
+{$codepage UTF8}
 
 {Notes: LazUTF8 must be the first unit}
 
@@ -14,6 +13,8 @@ var Server: TdjServer;
     IndexPageHandler: IHandler;
     HandlerContaner: TdjHandlerList;
 begin
+   Writeln('äää');
+   Writeln('Андрей');
    Server:=TdjServer.Create(5000);
    try
       //Add default handler
