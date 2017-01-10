@@ -1,6 +1,8 @@
 {Resource for page with blog post}
 unit blogarchiveresource;
 
+{$mode objfpc}
+
 interface
 
 uses djWebComponent, IdCustomHTTPServer, consts, Classes, SysUtils, SynMustache, SynCommons;
