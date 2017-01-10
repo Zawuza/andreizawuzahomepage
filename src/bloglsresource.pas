@@ -45,7 +45,6 @@ implementation
       Response.ContentType:='text/html';
       Response.ContentText:=HTML;
       Response.ResponseNo:=HTTP_OK;
-      Writeln(Response.ContentText);
 
       finally
       FreeAndNil(Template);
