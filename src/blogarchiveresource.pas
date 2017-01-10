@@ -3,7 +3,7 @@ unit blogarchiveresource;
 
 interface
 
-uses djWebComponent, IdCustomHTTPServer, consts, Classes, SysUtils, SynMustache, SynCommons;
+uses djWebComponent, IdCustomHTTPServer, consts, Classes, SysUtils, SynMustache, SynCommons, lazutf8classes;
 
 type
     TBlogArchiveResource = class(TdjWebComponent)
@@ -13,16 +13,16 @@ type
 implementation
 
 procedure TBlogArchiveResource.OnGet(Request: TIdHTTPRequestInfo; Response: TIdHTTPResponseInfo);
-var Navbar: TStringList;
-    Header: TStringList;
-    buf: TStringList;
+var Navbar: TStringListUTF8;
+    Header: TStringListUTF8;
+    buf: TStringListUTF8;
     mustache: TSynMustache;
     doc: Variant;
 begin
    {Create resources}
-   Navbar := TStringList.Create;
-   Header := TSTringList.Create;
-   buf:=TStringList.Create;
+   Navbar := TStringListUTF8.Create;
+   Header := TStringListUTF8.Create;
+   buf:=TStringListUTF8.Create;
    {Prepare files}
    Navbar.LoadFromFile(PATH_TO_SRC + '\html\navbar.html');
    Header.LoadFromFile(PATH_TO_SRC + '\html\head.html');
