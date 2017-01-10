@@ -1,7 +1,7 @@
 program andreizawuzawebsite;
 
 uses SysUtils, djServer, djWebAppContext, bloglsresource, indexdefaulthandler, djInterfaces,
-     djHandlerList, blogarchiveresource, Windows;
+     djHandlerList, blogarchiveresource;
 
 procedure Main;
 var Server: TdjServer;
