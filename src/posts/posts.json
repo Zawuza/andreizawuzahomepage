@@ -1,14 +1,4 @@
 {"posts":[{
-            "postid": "awesome",
-            "postname":"Awesome post",
-            "preview":"This is awesome post about all things in this world"
-          },
-          {
-            "postid": "singletones",
-            "postname":"Singletone is very very bad pattern!",
-            "preview":"Today I want to tell you one obvius thing..."
-          },
-          {
             "postid": "helloblog",
             "postname":"Hello, blog!",
             "preview":"My first post in this blog, yeah!!!"
