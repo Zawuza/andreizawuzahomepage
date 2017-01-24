@@ -57,7 +57,6 @@ begin
    doc.navbar:=Navbar.Text;
    {Get blog content and add to html}
    PostId:=ExtractBlogId(Request.Document);
-   Writeln(PostId);
    BlogPost:=TDataAccessObject.GetBlogById(PostId);
    if BlogPost.LoadFailed then
      begin
