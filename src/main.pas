@@ -9,7 +9,7 @@ var Server: TdjServer;
     IndexPageHandler: IHandler;
     HandlerContaner: TdjHandlerList;
 begin
-   Server:=TdjServer.Create(5000);
+   Server:=TdjServer.Create(80);
    try
       //Add default handler
       IndexPageHandler := TIndexDefaultHandler.Create;
