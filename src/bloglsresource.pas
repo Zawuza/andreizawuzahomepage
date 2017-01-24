@@ -30,7 +30,7 @@ implementation
       Navbar.LoadFromFile(PATH_TO_SRC + 'html/navbar.html');
       
       {Become posts}
-      JSONData := TDataAccessObject.GetBlogs;
+      JSONData := TDataAccessObject.GetLatestBlogs;
       JSON := (JSONData as TJSONObject);
       {Add navbar and headre to JSON}
       JSON.Add('head',Header.Text);

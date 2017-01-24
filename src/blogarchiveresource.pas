@@ -5,23 +5,33 @@ unit blogarchiveresource;
 
 interface
 
-uses djWebComponent, IdCustomHTTPServer, consts, Classes, SysUtils, SynMustache, SynCommons;
+uses djWebComponent, IdCustomHTTPServer, consts, Classes, SysUtils, SynMustache, SynCommons,
+dao, RegExpr;
 
 type
     TBlogArchiveResource = class(TdjWebComponent)
+    private
+      function ExtractBlogId(Path: string): string;
+    public
       procedure OnGet(Request: TIdHTTPRequestInfo; Response: TIdHTTPResponseInfo); override;
     end;
 
-
-    TBlogPostText = record
-      Rus: string;
-      Ger: string;
-      Eng: string;
-    end;
-
-    function GetBlogById(Id:string): TBlogPostText;
-
 implementation
+
+function TBlogArchiveResource.ExtractBlogId(Path: string): string;
+var RegExpr:TRegExpr;
+begin
+  RegExpr:=TRegExpr.Create;
+  try
+  RegExpr.Expression:='\/blog\/archive\/(\w*)';
+  if RegExpr.Exec(Path) then
+    begin
+      Result:=RegExpr.Match[1];
+    end;
+  finally
+    FreeAndNil(RegExpr);
+  end;
+end;
 
 procedure TBlogArchiveResource.OnGet(Request: TIdHTTPRequestInfo; Response: TIdHTTPResponseInfo);
 var Navbar: TStringList;
@@ -30,6 +40,7 @@ var Navbar: TStringList;
     mustache: TSynMustache;
     doc: Variant;
     BlogPost: TBlogPostText;
+    PostId: string;
 begin
    {Create resources}
    Navbar := TStringList.Create;
@@ -45,7 +56,14 @@ begin
    doc.head:=Header.Text;
    doc.navbar:=Navbar.Text;
    {Get blog content and add to html}
-   BlogPost:=GetBlogById('NOT IMPLEMENTED');
+   PostId:=ExtractBlogId(Request.Document);
+   Writeln(PostId);
+   BlogPost:=TDataAccessObject.GetBlogById(PostId);
+   if BlogPost.LoadFailed then
+     begin
+       Response.ResponseNo:=404;
+       exit;
+     end;
    doc.russian:=BlogPost.Rus;
    doc.german:=BlogPost.Ger;
    doc.english:=BlogPost.Eng;
@@ -61,11 +79,5 @@ begin
 end;
 
 
-function GetBlogById(Id: string): TBlogPostText;
-begin
-  Result.Rus:='<h1>Привет</h1>';
-  Result.Ger:='<h1>Hallo</h1>';
-  Result.Eng:='<h1>Hello</h1>';
-end;
 
 end.
