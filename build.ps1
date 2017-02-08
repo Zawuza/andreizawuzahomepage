@@ -1,3 +1,4 @@
+Stop-Process main
 Set-Location .\src
 if (!(Test-Path -Path ".\out")) {
     New-Item -ItemType directory -Path ".\out" | Out-Null
