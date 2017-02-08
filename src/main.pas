@@ -10,7 +10,7 @@ var Server: TdjServer;
     HandlerContaner: TdjHandlerList;
     LocalIp: string;
 begin
-   LocalIp:=GetEnv(LOCAL_IP);
+   LocalIp:=GetEnvironmentVariable(LOCAL_IP);
    if LocalIp = '' then
       Server:=TdjServer.Create(80)
    else  
