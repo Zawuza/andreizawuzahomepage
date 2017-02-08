@@ -14,5 +14,4 @@ if ($out.Contains('Error')) {
     Set-Location ..
     exit;
 }
-Set-Location ..
-.\src\bin\main.exe
+Set-Location .. 

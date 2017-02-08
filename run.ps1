@@ -1,0 +1,1 @@
+.\src\bin\main.exe | Out-File .\log.log
