@@ -8,8 +8,13 @@ var Server: TdjServer;
     BlogContext: TdjWebAppContext;
     IndexPageHandler: IHandler;
     HandlerContaner: TdjHandlerList;
+    LocalIp: string;
 begin
-   Server:=TdjServer.Create(80);
+   LocalIp:=GetEnv(LOCAL_IP);
+   if LocalIp = '' then
+      Server:=TdjServer.Create(80)
+   else  
+      Server:=TdjServer.Create(LocalIp,80);
    try
       //Add default handler
       IndexPageHandler := TIndexDefaultHandler.Create;
