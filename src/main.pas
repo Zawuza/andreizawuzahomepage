@@ -11,6 +11,7 @@ var Server: TdjServer;
     LocalIp: string;
 begin
    LocalIp:=GetEnvironmentVariable('LOCAL_IP');
+   Writeln('IP:',LocalIp);
    if LocalIp = '' then
       Server:=TdjServer.Create(80)
    else  
