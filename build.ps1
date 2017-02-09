@@ -1,3 +1,13 @@
+Try {
+Get-Process main -ErrorAction Stop | Stop-Process 
+Write-Output "Process is stopped"
+}
+Catch [Microsoft.PowerShell.Commands.ProcessCommandException]{
+  Write-Output "Process is not found: nothing is stopped"
+}
+Catch {
+  Write-Output "Unknown exception"
+}
 Set-Location .\src
 if (!(Test-Path -Path ".\out")) {
     New-Item -ItemType directory -Path ".\out" | Out-Null
@@ -12,6 +22,6 @@ if ($out.Contains('Error')) {
     Write-Output "---FAIL----There are errors!!!------------------------"
     Write-Output $out
     Set-Location ..
-    exit;
+    exit 1359;
 }
 Set-Location .. 
