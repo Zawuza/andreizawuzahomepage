@@ -27,3 +27,7 @@
         margin-right: 10px;
         font-family: 'Bitter', serif;
     }
+
+    .navbar-default .navbar-toggle .icon-bar {
+      background-color: #ffffff;
+    }
