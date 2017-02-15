@@ -1,7 +1,7 @@
 {"posts":[{
             "postid": "singletones",
             "postname": "Self written factories and IoC containers",
-            "preview": "In this post I discuss in which case you must use IoC containers and how to write it a good way"
+            "preview": "In this post I discuss in which case you have to use IoC containers and how to write it a good way"
           },
           {
             "postid": "helloblog",
