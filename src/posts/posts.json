@@ -1,4 +1,9 @@
 {"posts":[{
+            "postid": "singletones",
+            "postname": "Self written factories and IoC containers",
+            "preview": "In this post I discuss in which case you must use IoC containers and how to write it a good way"
+          },
+          {
             "postid": "helloblog",
             "postname":"Hello, blog!",
             "preview":"My first post in this blog :)"

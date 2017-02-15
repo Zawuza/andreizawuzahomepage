@@ -32,26 +32,23 @@ end;
 
 class function TDataAccessObject.GetBlogById(Id: string): TBlogPostText;
 var StrPost: TStringList;
-    FileName: string;
-    JSONPost: TJSONObject;
+    FilePath: string;
 begin
-  FileName:=PATH_TO_SRC + '/posts/' + Id + '.json';
   Result.LoadFailed:=true;
+  FilePath:=PATH_TO_SRC + '/posts/';
   if LowerCase(Id)='posts'then
-    exit;
-  if not FileExists(Filename) then
     exit;
   StrPost:=TStringList.Create;
   try
-  StrPost.LoadFromFile(FileName);
-  JSONPost:=(GetJSON(StrPost.Text) as TJSONObject);
-  Result.Eng:=JSONPost['english'].AsString;
-  Result.Ger:=JSONPost['german'].AsString;
-  Result.Rus:=JSONPost['russian'].AsString;
+  StrPost.LoadFromFile(FilePath + 'eng/' + Id + '.html');
+  Result.Eng:=StrPost.Text;
+  StrPost.LoadFromFile(FilePath + 'deu/' + Id + '.html');
+  Result.Ger:=StrPost.Text;
+  StrPost.LoadFromFile(FilePath + 'rus/' + Id + '.html');
+  Result.Rus:=StrPost.Text;
   Result.LoadFailed:=false;
   finally
     FreeAndNil(StrPost);
-    FreeAndNil(JSONPost);
   end;
 end;
 
