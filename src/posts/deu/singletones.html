@@ -1,1 +1,33 @@
-<h3>Dieser Artikel ist noch nicht ins Deutsche übersetzt. Du kannst mir damit helfen :)</h3>
+<h1>Selbstgeschriebene Factories und IoC-Containers</h1>
+<P>Heute möchte ich über einen Trick sprechen, der mich in den letzten Wochen zu denken gezwungen hat. Das ist die Registrirung
+    im initialization-Sektion. Ich fand den Trick interessant und möchte die Vorteile und nachteile davon zeigen. Bevor ich
+    beginne, muss ich sagen, dass es nicht um die "Turnkey"-Lösungen, wie zum Beispiel Spring4D.</p>
+<h3>Was ist die Registrirung im initialization-Sektion</h3>
+<p>Die Registrirung bei der Initialisierung ist eine ganz verbreitete in der Delphi-Welt Technik. Man erzeugt eine Fabrik beim
+    Start des Programms. In den Modulen, wo sich die Klassen befinden, die in der Fabrik registriert sein sollen schreibt
+    man in der Sektion "initialization" eine Registrierungsmethode. Beispiel:</p>
+<p>Das Modul mit der Fabrik:</p>
+<script src='http://pastebin.com/embed_js/NzKZgv8U'></script>
+<p>Das Modul mit den Beispielen der Klassen:</p>
+<script src='http://pastebin.com/embed_js/jxrCT1Uf'></script>
+<p>Beim Start des Programms wird TMySuperClass in der Fabrik gespeichert. Das ist echt cool, weil das eine Dependency-Inversion
+    ist. Man kann die gespeicherte Klasse so nutzen:</p>
+<script src='http://pastebin.com/embed_js/XAEZKr2Z'></script>
+<p>Wenn ich diesen Trick zum ersten Mal gesehen habe, war ich echt überrascht. Die Schöncheit dieser Technik hat mich aufgeregt
+    gemacht, aber ich habe auch ganz schnell die Nachteile gemerkt. Und deswegen habe ich mich entschieden diesen Post zu
+    schreiben, damit ich mit dieser Technik klarkommen kann und gut verstehen kann, wann man es nutzen soll und wann nicht
+</p>
+<h3>Speicherverbrauch</h3>
+<p>Die Fabriken sind im Prinzip nicht so groß (bei der richtigen Architektur, natürlich) und der Speicherverbrauch soll nicht
+    so groß sein. Es kann aber passieren, wenn die Fabriken sehr viel Klassen enthalten, dass der Speicherverbrauch zunimmt.
+    Das passiert aber selten. Ich denke, dass der Speicherverbrauch kein Nachteil der Fabriken ist.
+</p>
+<h3>Inspiriert durch:</h3>
+<ul>
+    <li><a href='http://www.devtrends.co.uk/blog/how-not-to-do-dependency-injection-the-static-or-singleton-container'>http://www.devtrends.co.uk/blog/how-not-to-do-dependency-injection-the-static-or-singleton-container</a></li>
+    <li><a href='http://www.ibm.com/developerworks/library/co-single/'>http://www.ibm.com/developerworks/library/co-single/</a></li>
+    <li><a href='http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons'>http://stackoverflow.com/questions/137975/what-is-so-bad-about-singletons</a></li>
+    <li><a href='http://misko.hevery.com/2008/10/21/dependency-injection-myth-reference-passing/'>http://misko.hevery.com/2008/10/21/dependency-injection-myth-reference-passing/</a></li>
+    <li><a href='http://robstechcorner.blogspot.de/2009/09/exploring-trttitype-and-descendants-in.html'>http://robstechcorner.blogspot.de/2009/09/exploring-trttitype-and-descendants-in.html</a></li>
+    <li><a href='http://stackoverflow.com/questions/10613094/how-can-i-make-sure-rtti-is-available-for-a-class-without-instantiating-it/10613212#10613212'>http://stackoverflow.com/questions/10613094/how-can-i-make-sure-rtti-is-available-for-a-class-without-instantiating-it/10613212#10613212</a></li>
+</ul>
