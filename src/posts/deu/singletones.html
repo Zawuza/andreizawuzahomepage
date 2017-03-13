@@ -22,6 +22,32 @@
     so groß sein. Es kann aber passieren, wenn die Fabriken sehr viel Klassen enthalten, dass der Speicherverbrauch zunimmt.
     Das passiert aber selten. Ich denke, dass der Speicherverbrauch kein Nachteil der Fabriken ist.
 </p>
+<h3>Ausführungszeit</h3>
+<p>Hier liegt alles an der Hand: die Zeit des Startes von dem Program wird lagsamer, aber die Ausführungs wird
+    schneller, weil wir alles vorher vorbereitet haben.
+</p>
+<h3>Lesbarkeit und Schönheit des Codes</h3>
+<p> Der Vorteil der Nutzung der Fabriken ist, dass wir die Inversion von den Abhängigkeiten schaffen, was die Kopplung
+    des Codes verringert. Dazu sollen wir nie den Code der Fabrik verändern, um neue Objekten in dieser Fabrik
+    registrieren. Das heißt, dass wir auch dem Open Closed Prinzip folgen. Von der anderen Seite, wir sollen ein
+    Singleton erzeugen. Da riecht der Code ein bisschen schon.
+</p>
+<h3>Singletone</h3>
+<p>Die Erzeugung des Singletones bedeutet für uns, dass wir eine globale Instanz konstruieren. Die globalen Variablen
+   erzeugt man meistens nicht, die Singletones sind aber noch da. Es gibt eine Vielzahl von den Argumenten, warum man
+   nie in seinem Leben Singleton erzeugen soll. Die Gründe sind manchmal für uns nicht so relevant. Unter dem
+   Link (auf stackoverflow) sind einige Gründe geschrieben:
+</p>
+<ul>
+    <li>Die Singletons brechen den Single Responsibility Prinzip, weil sie selbst das eigene Leben kontrollieren.
+        Ich finde es nicht logisch, denn im Beispiel oben sind die Singletons von einer Funktion und finalization-Sektion
+        kontrolliert.   
+    </li>
+    <li>Singletons(oder Singletöne?) sind schlecht, weil die schwer sich parallelisieren lassen. Im Kontext der 
+        Desktopanwendungen ist es meistens nicht der Fall und alle Parallelisierungsprobleme sich dur einen Mutex
+        lösen lassen. Wenn die Anzahl der Threads erhöht sich, dann können schon die Probleme entstehen.
+    </li>
+</ul>
 <h2>Die Übersetzung läuft noch :)</h2>
 <h3>Inspiriert durch:</h3>
 <ul>
