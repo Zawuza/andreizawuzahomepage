@@ -38,6 +38,7 @@ begin
   if not (LFileName[1]='\') then
     AFileName:='\' + AFileName;
   Response.ContentType:=LContentType;
+  Writeln(PATH_TO_SRC + LFileName);
   Result:=TFileStream.Create(PATH_TO_SRC + LFileName,fmOpenRead);
 end;
 
@@ -61,6 +62,7 @@ AllowedFiles:=TFPGMap<string,TStaticFile>.Create;
 {Add allowed files to dictionary}
 AllowedFiles.Add('/face.jpg',TStaticFile.Create('img\face.jpg','image/jpeg'));
 AllowedFiles.Add('/navbar.css',TStaticFile.Create('css\navbar.css','text/css'));
+AllowedFiles.Add('/favicon.ico',TStaticFile.Create('favicon.ico','image/ico'));
 
 finalization
 

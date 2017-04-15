@@ -40,11 +40,11 @@ begin
     exit;
   StrPost:=TStringList.Create;
   try
-  StrPost.LoadFromFile(FilePath + 'eng/' + Id + '.html');
+  StrPost.LoadFromFile(FilePath + Id +'/' + Id + '_en.html');
   Result.Eng:=StrPost.Text;
-  StrPost.LoadFromFile(FilePath + 'deu/' + Id + '.html');
+  StrPost.LoadFromFile(FilePath + Id + '/' + Id + '_de.html');
   Result.Ger:=StrPost.Text;
-  StrPost.LoadFromFile(FilePath + 'rus/' + Id + '.html');
+  StrPost.LoadFromFile(FilePath + Id + '/' + Id + '_ru.html');
   Result.Rus:=StrPost.Text;
   Result.LoadFailed:=false;
   finally
