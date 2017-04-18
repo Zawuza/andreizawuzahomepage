@@ -38,7 +38,6 @@ begin
   if not (LFileName[1]='\') then
     AFileName:='\' + AFileName;
   Response.ContentType:=LContentType;
-  Writeln(PATH_TO_SRC + LFileName);
   Result:=TFileStream.Create(PATH_TO_SRC + LFileName,fmOpenRead);
 end;
 
