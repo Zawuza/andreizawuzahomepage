@@ -1,1 +1,0 @@
-fpc mainserver.pas -Fu".\dep\indy-10.2.0.3" -FU".\out" -o".\bin\mainserver.exe"
