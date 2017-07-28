@@ -18,34 +18,33 @@
     schreiben, damit ich mit dieser Technik klarkommen kann und gut verstehen kann, wann man es nutzen soll und wann nicht.
 </p>
 <h3>Speicherverbrauch</h3>
-<p>Die Fabriken sind im Prinzip nicht so groß (bei der richtigen Architektur, natürlich) und der Speicherverbrauch soll auch nicht
-    so groß sein. Es kann aber passieren, wenn die Fabriken sehr viel Klassen enthalten, dass der Speicherverbrauch zunimmt.
-    Das passiert aber selten. Ich denke, dass der Speicherverbrauch kein Nachteil der Fabriken ist.
+<p>Die Fabriken sind im Prinzip nicht so groß (bei der richtigen Architektur, natürlich) und der Speicherverbrauch soll auch
+    nicht so groß sein. Es kann aber passieren, wenn die Fabriken sehr viel Klassen enthalten, dass der Speicherverbrauch
+    zunimmt. Das passiert aber selten. Ich denke, dass der Speicherverbrauch kein Nachteil der Fabriken ist.
 </p>
 <h3>Ausführungszeit</h3>
-<p>Hier liegt alles an der Hand: die Zeit des Startes von dem Program wird lagsamer, aber die Ausführungs wird
-    schneller, weil wir alles vorher vorbereitet haben.
+<p>Hier liegt alles an der Hand: die Zeit des Startes von dem Program wird lagsamer, aber die Ausführungs wird schneller, weil
+    wir alles vorher vorbereitet haben.
 </p>
 <h3>Lesbarkeit und Schönheit des Codes</h3>
-<p> Der Vorteil der Nutzung der Fabriken ist, dass wir die Inversion von den Abhängigkeiten schaffen, was die Kopplung
-    des Codes verringert. Dazu sollen wir nie den Code der Fabrik verändern, um neue Objekten in dieser Fabrik
-    registrieren. Das heißt, dass wir auch dem Open Closed Prinzip folgen. Von der anderen Seite, wir sollen ein
-    Singleton erzeugen. Da riecht der Code ein bisschen schon.
+<p> Der Vorteil der Nutzung der Fabriken ist, dass wir die Inversion von den Abhängigkeiten schaffen, was die Kopplung des Codes
+    verringert. Dazu sollen wir nie den Code der Fabrik verändern, um neue Objekten in dieser Fabrik registrieren. Das heißt,
+    dass wir auch dem Open Closed Prinzip folgen. Von der anderen Seite, wir sollen ein Singleton erzeugen. Da riecht der
+    Code ein bisschen schon.
 </p>
 <h3>Singletone</h3>
-<p>Die Erzeugung des Singletones bedeutet für uns, dass wir eine globale Instanz konstruieren. Die globalen Variablen
-   erzeugt man meistens nicht, die Singletones sind aber noch da. Es gibt eine Vielzahl von den Argumenten, warum man
-   nie in seinem Leben Singleton erzeugen soll. Die Gründe sind manchmal für uns nicht so relevant. Unter dem
-   Link (auf stackoverflow) sind einige Gründe geschrieben:
+<p>Die Erzeugung des Singletones bedeutet für uns, dass wir eine globale Instanz konstruieren. Die globalen Variablen erzeugt
+    man meistens nicht, die Singletones sind aber noch da. Es gibt eine Vielzahl von den Argumenten, warum man nie in seinem
+    Leben Singleton erzeugen soll. Die Gründe sind manchmal für uns nicht so relevant. Unter dem Link (auf stackoverflow)
+    sind einige Gründe geschrieben:
 </p>
 <ul>
-    <li>Die Singletons brechen den Single Responsibility Prinzip, weil sie selbst das eigene Leben kontrollieren.
-        Ich finde es nicht logisch, denn im Beispiel oben sind die Singletons von einer Funktion und finalization-Sektion
-        kontrolliert.   
+    <li>Die Singletons brechen den Single Responsibility Prinzip, weil sie selbst das eigene Leben kontrollieren. Ich finde es
+        nicht logisch, denn im Beispiel oben sind die Singletons von einer Funktion und finalization-Sektion kontrolliert.
     </li>
-    <li>Singletons(oder Singletöne?) sind schlecht, weil die schwer sich parallelisieren lassen. Im Kontext der 
-        Desktopanwendungen ist es meistens nicht der Fall und alle Parallelisierungsprobleme sich dur einen Mutex
-        lösen lassen. Wenn die Anzahl der Threads erhöht sich, dann können schon die Probleme entstehen.
+    <li>Singletons(oder Singletöne?) sind schlecht, weil die schwer sich parallelisieren lassen. Im Kontext der Desktopanwendungen
+        ist es meistens nicht der Fall und alle Parallelisierungsprobleme sich dur einen Mutex lösen lassen. Wenn die Anzahl
+        der Threads erhöht sich, dann können schon die Probleme entstehen.
     </li>
 </ul>
 <p> Die folgenden Gründe finde ich wichtig:
@@ -57,23 +56,56 @@
     </li>
 </ul>
 <h3>Testen der Fabriken</h3>
-<p> Im Prinzip, es ist möglich. Man kann ein Testmodul erstellen, wo eine Klasse geschrieben wird, die während
-    des Testverfahrens genutzt wird. Das ist ein Vorteil von den Fabriken. Unsere Fabriken sind gleichzeitig auch 
-    IoC-Containers und das ist gut. Es ist aber schwer, die Fabrik selbst zu ersetzen. Dafür kann man ein Interface schreiben.
+<p> Im Prinzip, es ist möglich. Man kann ein Testmodul erstellen, wo eine Klasse geschrieben wird, die während des Testverfahrens
+    genutzt wird. Das ist ein Vorteil von den Fabriken. Unsere Fabriken sind gleichzeitig auch IoC-Containers und das ist
+    gut. Es ist aber schwer, die Fabrik selbst zu ersetzen. Dafür kann man ein Interface schreiben.
 </p>
 <script src='http://pastebin.com/embed_js/qUtSPPLP'></script>
-<p> Ich bin der Meinung, dass eine Vorfahrklasse (oder Interface) für den Contaner zu schreiben eine gute Idee ist! Es ist
-    aber nicht besonders einfach.
+<p> Ich bin der Meinung, dass eine Vorfahrklasse (oder Interface) für den Contaner zu schreiben eine gute Idee ist! Es ist aber
+    nicht besonders einfach.
 </p>
-<p>Es gibt noch ein Problem, das eher Delphi-bezogen ist. Es war mir früher nicht bekannt, dass die initialization-Sektion nur 
+<p>Es gibt noch ein Problem, das eher Delphi-bezogen ist. Es war mir früher nicht bekannt, dass die initialization-Sektion nur
     dann ausgeführt wird, wenn man das Modul mit der Sektion in Uses von dem Hauptprogramm schreibt. Das ist manchmal unangenehm,
-    wenn ich, zum Beispiel, die Module durch Suchpfad angebe. Alle diese Module, die nicht direkt zu dem Projekt hinzugefügt wurden,
-    soll man mit der Hand in das Hauptprogramm schreiben. Machmal ist es auch angenehm, zum Beispiel, wenn man zum Testen nicht alle Klassen
-    in die Fabrik lädt. Aber was soll man tun, wenn man in mehreren Tests verschiede Klassen braucht?
+    wenn ich, zum Beispiel, die Module durch Suchpfad angebe. Alle diese Module, die nicht direkt zu dem Projekt hinzugefügt
+    wurden, soll man mit der Hand in das Hauptprogramm schreiben. Machmal ist es auch angenehm, zum Beispiel, wenn man zum
+    Testen nicht alle Klassen in die Fabrik lädt. Aber was soll man tun, wenn man in mehreren Tests verschiede Klassen braucht?
 </p>
 <p>
-    So, der Argument, dass die Fabrike schwer zu testen sind, ist ziemlich bestreitbar, aber ich denke, dass man etwas besser ausdenken kann, 
-    wenn man echt viele Tests machen will.
+    So, der Argument, dass die Fabrike schwer zu testen sind, ist ziemlich bestreitbar, aber ich denke, dass man etwas besser
+    ausdenken kann, wenn man echt viele Tests machen will.
+</p>
+<h3>Verstecken der Abhängigkeiten</h3>
+<p>
+    Das ist für mich das Hauptproblem bei der Nutzung der Singletons. Betrachten wir einen Beispiel:
+</p>
+<script src='http://pastebin.com/embed_js/5EeuXYtN'></script>
+<p>
+    Hier ist es ganz schwer zu verstehen, dass TConsumer noch eine Klasse braucht, um eine wichtige Arbeit zu machen. Diese Abhängigkeit
+    ist versteckt. Das macht den Code schlechter, weil er schwerer zu verstehen ist und die Klasse ohne das Singleton nicht
+    funktionieren wird und nicht wiederverwendet werden kann. Das ist aber das Problem des Designs und nicht der Fabrik selber.
+</p>
+<p>
+    Die Singletons verletzen die Schichtenarchitektur. Das System mit Singletons kann nicht in einige Schichten unterteilt werden
+    und das macht das Verstehen der Code schwieriger. Man kann aber das Singleton einen Schicht zuweisen, aber da es aus
+    allen Schichten sichtbar ist, gilt dieser Argument nicht.
+</p>
+<h2>Was soll man dann tun?</h2>
+<p>
+    Die IoC-Fabriken haben einige Probleme, was aber nicht heißt, dass man ihnen nicht nutzen soll. Aber wenn man doch dafür
+    entscheidet, die IoC-Containers nicht zu nutzen, dann welche Alternativen gibt es?
+</p>
+<h3>Strategie</h3>
+<p>
+    Die erste Lösung kommt sofort: die Registrierung der Objekten aus "initialization"-Sektion in das Konstruktor oder eine spezielle
+    Mehode zu verschieben, wie hier:
+</p>
+<script src='http://pastebin.com/embed_js/DSskvz25'></script>
+<p>
+    Das heißt, dass wir das Pattern "Strategie" zu nutzen beginnen, da wir eine Klasse schreiben, der entscheidet, welche Implementierung
+    man nutzen soll. Das Problem ist aber, dass das Hinzufügen neuer Strategien jetzt schwieriger als mit einer IoC-Fabrik
+    ist. Der Vorteil der Strategie ist aber, dass die Strategie mehrere unabhängige Instanzen haben kann. Diese Vorgehensweise
+    bringt keine große Vorteile und hilft nur die Schichtenarchitektur zu wiederherstellen und die "Fabrik" zu jedem Zeitpunkt
+    freizugeben und sie bis zum Ende des Programms nicht im Speicher halten. Wir verlieren aber alle Vorteile der IoC-Fabriken
 </p>
 <h2>Die Übersetzung läuft noch :)</h2>
 <h3>Inspiriert durch:</h3>
